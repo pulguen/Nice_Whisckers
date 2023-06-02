@@ -1,0 +1,47 @@
+empezar a usar git
+//git init
+
+GIT 3 ESTADOS
+
+WORKING DIRECTORY - DIRECTORIO DE TRABAJO
+STAGE - LIMBO add
+REPOSITORY - REPOSITORIO commit
+
+U sin seguimiento, no esta registrado
+A añadido al STAGE
+M modificado
+
+//git add nombre de archivo, version temporal pasada al STAGE
+
+//git commit -m "comentario"
+
+para agregar todos los archivos al mismo tiempo
+git add .
+git commit -m"comentario"
+
+lista de versiones en orden descendente
+git log
+para salir q
+
+para moverme a una version anterior o posterior.
+git checkout idversion
+
+Ramas, lineas de tiempo
+git branch nombre
+
+git checkout "nombre"
+
+para fusionar las Ramas
+merge --> fusion
+git merge nombrerama, ubicado en la rama principal
+para borrar una rama
+git branch -D nombrerama
+
+
+
+
+
+
+
+
+
