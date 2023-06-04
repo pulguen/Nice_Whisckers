@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<h3>PERFIL</h3>
+{% if request.user.is.authenticated %}
+<br>
+{% else %}
+<h4>{{ user.username | Upper }}, Bienvenido</h4>
+{% endif %}
+
+{% endblock %}
