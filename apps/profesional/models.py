@@ -1,4 +1,3 @@
-from typing import Self
 from django.db import models
 
 # Create your models here.
@@ -11,3 +10,4 @@ class Profesional(models.Model):
     
     def __str__(self):        
         return f"nombre profesional: {self.profesional_nombre}"
+    

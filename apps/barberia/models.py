@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Barberia(models.Model):
+    barberia_is_active = models.BooleanField(default=True)
     barberia_nombre = models.CharField(max_length=100, null=True, blank=True)
     barberia_direccion = models.CharField(max_length=255, null=True, blank=True)
     barberia_horario = models.CharField(max_length=255, null=True, blank=True)

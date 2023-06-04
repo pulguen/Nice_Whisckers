@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 PROJECTS_APPS = [
@@ -35,6 +34,7 @@ PROJECTS_APPS = [
     'apps.cliente',
     'apps.my_site',
     'apps.profesional',
+    'apps.propietario',
     
 ]
 
@@ -132,10 +132,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-PAGINA_INICIO = "Inicio"
+PAGINA_INICIO = ""
 # Variables de redireccion de login y logout
 LOGIN_REDIRECT_URL = PAGINA_INICIO
 LOGOUT_REDIRECT_URL = PAGINA_INICIO
 
 LOGIN_URL=""
-
