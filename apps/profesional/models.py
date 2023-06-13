@@ -1,13 +1,19 @@
 from django.db import models
+from apps.my_site.models import Persona
 
 # Create your models here.
-class Profesional(models.Model):
-    is_active = models.BooleanField(default=True)
-    tipo_usuario = "Profesional"
-    profesional_nombre = models.CharField(max_length=255)
-    profesional_barberia = models.CharField(max_length=255)
-    profesional_horarios = models.CharField(max_length=255)
+class Profesional(Persona):
+    disponible = models.BooleanField(default=True)
+    horarios = models.CharField(max_length=255)
+    barberia =models.ForeignKey("barberia.Barberia", verbose_name=("Berbería"), on_delete=models.CASCADE)
+    
+    class Meta:
+        ordering = ('dni',)
     
     def __str__(self):        
-        return f"nombre profesional: {self.profesional_nombre}"
+        return f"nombre profesional: {self.nombre}"
+    
+    
+    
+    
     

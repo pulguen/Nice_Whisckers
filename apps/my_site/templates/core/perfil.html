@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %}
+{% extends 'mysite/base.html' %}
 
 {% block content %}
 
@@ -6,7 +6,14 @@
 {% if request.user.is.authenticated %}
 <br>
 {% else %}
-<h4>{{ user.username | Upper }}, Bienvenido</h4>
+<h4>{{ usuario.nombre | Upper }}, Bienvenido</h4>
 {% endif %}
 
 {% endblock %}
+
+
+
+
+
+
+

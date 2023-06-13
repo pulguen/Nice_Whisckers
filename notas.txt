@@ -38,6 +38,9 @@ para borrar una rama
 git branch -D nombrerama
 
 
+add serializer
+
+
 
 
 

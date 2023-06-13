@@ -31,11 +31,10 @@ ALLOWED_HOSTS = []
 
 PROJECTS_APPS = [
     'apps.barberia',
-    'apps.cliente',
     'apps.my_site',
     'apps.profesional',
     'apps.propietario',
-    
+    'apps.usuario',
 ]
 
 DJANGO_APPS = [
@@ -113,9 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 
-LANGUAGE_CODE = 'es-ar'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'America/Argentina/Buenos_Aires'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 

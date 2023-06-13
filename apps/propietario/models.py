@@ -1,14 +1,15 @@
 from django.db import models
+from apps.my_site.models import Persona
+
 
 # Create your models here.
-class Propietario(models.Model):
-    tipo_usuario = "Propietario"
-    propietario_is_active = models.BooleanField(default=True,verbose_name="Activo")
-    propietario_nombre = models.CharField(max_length=255,verbose_name="Nombre")
-    propietario_barberia =models.CharField(max_length=255,verbose_name="Barberia")
-    propietario_ciut = models.IntegerField(null=True,blank=True,verbose_name="Cuit")
+class Propietario(Persona):
+    barberia = models.ForeignKey("barberia.Barberia", verbose_name=("Barberia"), on_delete=models.CASCADE)
+    
+    class Meta:
+        ordering = ('dni',)
         
     def __str__(self):        
-        return f"nombre profesional: {self.propietario_nombre}"
+        return f"nombre propietario: {self.nombre}"
     
     
