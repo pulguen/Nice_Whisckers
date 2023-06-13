@@ -34,6 +34,7 @@ PROJECTS_APPS = [
     'apps.my_site',
     'apps.profesional',
     'apps.propietario',
+    'apps.turno',
     'apps.usuario',
 ]
 
@@ -45,6 +46,7 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
 INSTALLED_APPS = DJANGO_APPS + PROJECTS_APPS
 
 MIDDLEWARE = [

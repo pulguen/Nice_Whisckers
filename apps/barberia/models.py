@@ -14,6 +14,3 @@ class Barberia(models.Model):
         Cadena para representar el objeto MyModelName (en el sitio de Admin, etc.)
         """
         return f"Barberia: {self.barberia_nombre}"
-    
-    
-    
