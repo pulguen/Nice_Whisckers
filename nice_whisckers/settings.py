@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 PROJECTS_APPS = [
     'apps.barberia',
     'apps.my_site',
+    'apps.post',
     'apps.profesional',
     'apps.propietario',
     'apps.turno',

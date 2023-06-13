@@ -11,5 +11,3 @@ class Turno(models.Model):
     
     class Meta:
         ordering = ('cliente',)
-        
-        
