@@ -2,7 +2,14 @@
 
 {% block content %}
 
-<h1>Inicio</h1>
+<h1>{{ page_heading }}</h1>
+<p>Contenido de la página de inicio...</p>
+
+<ul>
+    {% for barberia in barberias %}
+        <li class = "btn_barberia" ><a href="">{{ barberia.nombre }}</a></li>
+    {% endfor %}
+</ul>
 
 <div>
     <h4>POSTEO</h4>

@@ -9,11 +9,7 @@ class Profesional(Persona):
     
     class Meta:
         ordering = ('dni',)
+        verbose_name_plural = 'Profesionales'
     
     def __str__(self):        
         return f"nombre profesional: {self.nombre}"
-    
-    
-    
-    
-    

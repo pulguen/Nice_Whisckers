@@ -20,11 +20,5 @@ class Persona(models.Model):
     objects = PersonaManager()
 
     def __str__(self):
-        return f'{self.nombre} {self.apellido} - {self.dni}'
-
-    
-
-    
-    
-    
+        return f'{self.nombre} {self.apellido} - {self.dni}' 
     

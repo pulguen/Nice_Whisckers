@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
+        {% load static %}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Nice Whiscker</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link rel="stylesheet" href="https://use.typekit.net/man8mkg.css">
     </head>
-    <body>        
-        <h1>Inicio</h1>
+    <body>
+        <div class="logo">
+            <img src="{% static 'images/logoNW.jpg' %}" alt="logo_nicewhisckers">
+        </div>
         <ul>
-            <li><a href="{% url 'inicio' %}">Inicio</a></li>
-            <li><a href="">Perfil</a></li>       
-
-            {% if request.user.is.authenticated %}
-            <li><a href="">Salir</a></li>
+            <li><a href="{% url 'home' %}">Inicio</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'perfil_usuario' %}">Perfil</a></li>
+                <h4>{{ user.username }}, Bienvenido</h4>
             {% else %}
-            <li><a href="">Iniciar Sesion</a></li>
-            {% endif %}
-            
+                <br>
+            {% endif %}            
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
+                <li><a href="{% url 'singup' %}">Registrarse</a></li>
+            {% endif %}            
         </ul>
         {% block content %}{% endblock %}
     </body>

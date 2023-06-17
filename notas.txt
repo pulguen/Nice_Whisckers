@@ -40,6 +40,12 @@ git branch -D nombrerama
 
 add serializer
 
+Ultimo:
+archivos urls 
+url home
+urls barberia
+
+
 
 
 

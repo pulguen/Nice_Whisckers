@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div>
+<a href="{% url 'crear_post' %}">Publicar</a><br>
+<p> Cantidad de Posteos: {{ posts|length }} </p>
+<ul>
+    {% Post in Posts %}
+        <li><a href="">{{ post.barberia }}</a></li>
+    {% endfor %}
+</ul>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;    
+}
+
+body{
+    font-size: 12pt;
+    font-family: "parisplus-std", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.logo img{
+    width: 60px;
+}
+
+.btn_barberia{
+    border: solid;
+    width: 300px;
+    height: 80px;
+}

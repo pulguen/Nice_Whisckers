@@ -1,4 +1,5 @@
-{% extends 'my_site/base.html' %}
+{% extends 'core/base.html' %}
+{% load static %}
 {% block content %}
 <div class="cover-photo">
     <!-- Portada -->
@@ -7,17 +8,10 @@
 
 <div class="profile-section">
     <!-- Foto de perfil -->
-    <img src="{% static 'images/profile_barber_photo.jpg' %}" alt="Foto de perfil">
+    <img src="{% static 'images/profile_photo.png' %}" alt="Foto de perfil">
 
-    <!-- Información de la barbería -->
-    <h2>{{ barberia.nombre }}</h2>
-    <p>Horario: {{ barberia.horario }}</p>
-    <p>Dirección: {{ barberia.direccion }}</p>
-</div>
-
-<div class="reserva_turno">
-  <!-- Pedir Turno -->
-  <a href="{% url 'crear_turno' %}">Reservar</a><br>
+    <!-- Información de la Usuario -->
+    <h2>{{ user.username }}</h2>
 </div>
 
 <div class="feed-section">
@@ -45,9 +39,3 @@
     {% endfor %}
 </div>
 {% endblock %}
-
-
-
-
-
-

@@ -10,4 +10,5 @@ class Turno(models.Model):
     comentario = models.CharField(max_length=100, null=True, blank=True)
     
     class Meta:
-        ordering = ('cliente',)
+        ordering = ["-dia"]
+        
