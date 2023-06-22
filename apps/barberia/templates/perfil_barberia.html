@@ -1,13 +1,14 @@
 {% extends 'my_site/base.html' %}
+{% load static%}
 {% block content %}
-<div class="cover-photo">
+<div class="portada_usuario">
     <!-- Portada -->
-    <img src="{% static 'images/cover_photo.jpg' %}" alt="Portada">
+    <img src="{% static 'images/cover_photo.jpg' %}" alt="Portada" id='imagen_portada'>
 </div>
 
 <div class="profile-section">
     <!-- Foto de perfil -->
-    <img src="{% static 'images/profile_barber_photo.jpg' %}" alt="Foto de perfil">
+    <img src="{% static 'images/profile_barber_photo.jpg' %}" alt="Foto de perfil" id='imagen_perfil'>
 
     <!-- Información de la barbería -->
     <h2>{{ barberia.nombre }}</h2>
@@ -15,34 +16,14 @@
     <p>Dirección: {{ barberia.direccion }}</p>
 </div>
 
-<div class="reserva_turno">
+<div class="btn_reservar">
   <!-- Pedir Turno -->
-  <a href="{% url 'crear_turno' %}">Reservar</a><br>
+  <a href="">Reservar</a><br>
 </div>
 
 <div class="feed-section">
+  <a href="{% url 'crear_post' %}">¿Queres Publicar?</a><br>
   <h3>Publicaciones</h3>
-    {% for post in feed %}
-      <div class="post">
-        <!-- Contenido de la publicación -->
-        <img src="{{ post.imagen.url }}" alt="Imagen de la publicación">
-        <p>{{ post.texto }}</p>
-        <p>{{ post.fecha }}</p>
-
-        <!-- Comentarios -->
-        <h4>Comentarios</h4>
-        {% for comment in post.comentarios %}
-          <p>{{ comment.usuario }}: {{ comment.texto }}</p>
-        {% endfor %}
-
-        <!-- Formulario para agregar comentario -->
-        <form method="POST" action="{% url 'agregar_comentario' post.id %}">
-          {% csrf_token %}
-          <input type="text" name="texto" placeholder="Agregar comentario">
-          <button type="submit">Comentar</button>
-        </form>
-      </div>
-    {% endfor %}
 </div>
 {% endblock %}
 

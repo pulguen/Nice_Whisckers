@@ -11,24 +11,33 @@
         <link rel="stylesheet" href="https://use.typekit.net/man8mkg.css">
     </head>
     <body>
-        <div class="logo">
-            <img src="{% static 'images/logoNW.jpg' %}" alt="logo_nicewhisckers">
-        </div>
-        <ul>
-            <li><a href="{% url 'home' %}">Inicio</a></li>
-            {% if user.is_authenticated %}
-                <li><a href="{% url 'perfil_usuario' %}">Perfil</a></li>
-                <h4>{{ user.username }}, Bienvenido</h4>
-            {% else %}
-                <br>
-            {% endif %}            
-            {% if user.is_authenticated %}
-                <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
-            {% else %}
-                <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
-                <li><a href="{% url 'singup' %}">Registrarse</a></li>
-            {% endif %}            
-        </ul>
-        {% block content %}{% endblock %}
+        <header class='contenedor_header'>
+            <nav class = 'contenedor_nav'>
+                    <div class="contenedor_logo">
+                        <a href="{% url 'home' %}"> <img src="{% static 'images/logoNW.jpg' %}" alt="logo_nicewhisckers"></a>
+                    </div>
+                    <ul class = "contenedor_opciones">
+                        {% if user.is_authenticated %}
+                            <h3>{{ user.username }}, Bienvenido</h3>
+                            <li class = 'btn_nav'><a href="{% url 'home' %}"><img src="{% static 'images/iconos/home.png' %}" alt="icono_user"></a></li>
+                            <li class = 'btn_nav'><a href="{% url 'perfil_usuario' %}"><img src="{% static 'images/iconos/user.png' %}" alt="icono_user"></a></li>
+
+                        {% endif %}            
+                        {% if user.is_authenticated %}
+                            <li class = 'btn_nav'><a href="{% url 'logout' %}"><img src="{% static 'images/iconos/logout.png' %}" alt="icono_user"></a></li>
+                        {% else %}
+                            <li class = 'btn_nav_registro'><a href="{% url 'login' %}">Iniciar Sesión</a></li>
+                            <li class = 'btn_nav_registro'><a href="{% url 'singup' %}">Registrarse</a></li>
+                        {% endif %}
+                    </ul>
+                <nav>        
+            <header>
+            <div class= 'contenedor_home'>
+                {% block content %}{% endblock %}
+                {% include 'core/footer.html' %}
+            </div>
+                
+
+
     </body>
 </html>

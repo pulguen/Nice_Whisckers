@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div>
+<p> Cantidad de Barberias: {{ barberias|length }} </p>
+<a href="{% url 'crear_barberia' %}">Crear nueva Barberia</a><br>
+<ul>
+    {% for barberia in barberias %}
+        <li class = "btn_barberia" ><a href="">{{ barberia.nombre }}</a></li>
+    {% endfor %}
+</ul>
+</div>
+{% endblock %}

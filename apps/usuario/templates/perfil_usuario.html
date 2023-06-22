@@ -1,18 +1,31 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block content %}
-<div class="cover-photo">
+<div class="portada_usuario">
     <!-- Portada -->
-    <img src="{% static 'images/cover_photo.jpg' %}" alt="Portada">
+    <img src="{% static 'images/cover_photo.jpg' %}" alt="Portada" id='imagen_portada'>
 </div>
-
 <div class="profile-section">
-    <!-- Foto de perfil -->
-    <img src="{% static 'images/profile_photo.png' %}" alt="Foto de perfil">
-
-    <!-- Información de la Usuario -->
-    <h2>{{ user.username }}</h2>
+  <div class="profile-info">
+      <!-- Foto de perfil -->
+      <img src="{% static 'images/profile_photo.png' %}" alt="Foto de perfil" id="imagen_perfil">
+      <div class="user-info">
+          <!-- Información del Usuario -->
+          <h2>Usuario: {{ user.username }}</h2>
+          <p>Email: {{ user.email }}</p>
+      </div>
+  </div>
 </div>
+
+{% if user.es_propietario %}
+<div class='btn_reservar'>
+<a href="{% url 'propietario:admin_barber' id=barberia.id %}">Administrar Barbería</a>
+</div>
+{% else %}
+<div class='btn_reservar'>
+<a href="{% url 'barberia:crear_barberia' %}">Agregar Barberia</a>
+</div>
+{% endif %}
 
 <div class="feed-section">
   <h3>Publicaciones</h3>
@@ -20,8 +33,8 @@
       <div class="post">
         <!-- Contenido de la publicación -->
         <img src="{{ post.imagen.url }}" alt="Imagen de la publicación">
-        <p>{{ post.texto }}</p>
-        <p>{{ post.fecha }}</p>
+        <p>{{ post.contenido }}</p>
+        <p>{{ post.fecha_publicacion }}</p>
 
         <!-- Comentarios -->
         <h4>Comentarios</h4>

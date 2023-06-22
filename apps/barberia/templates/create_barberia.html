@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>Crear Barbería</h1>
-<form method="POST" action="{% url 'crear_barberia' %}">
+<form method="POST" action="{% url 'barberia:crear_barberia' %}">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Guardar</button>

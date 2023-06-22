@@ -1,12 +1,22 @@
-{% extends 'core/base.html' %}
-{% block content %}
+{% load static %}
+{% load humanize %}
 <div>
-<a href="{% url 'crear_post' %}">Publicar</a><br>
-<p> Cantidad de Posteos: {{ posts|length }} </p>
-<ul>
-    {% Post in Posts %}
-        <li><a href="">{{ post.barberia }}</a></li>
-    {% endfor %}
-</ul>
+    <p>Cantidad de Posteos: {{ posts|length }}</p>
+    <ul>
+        {% for post in posts %} 
+            <li>
+                <div class="card">
+                    <h4 class="barberia">{{ post.propietario.barberia.nombre }}</h4>
+                    <h5 class='fecha_publicacion'>{{ post.fecha_publicacion|timesince|naturaltime  }}</h5>        
+                    <img src="{% static post.imagen.url %}" alt="Imagen de la publicación">
+                    <p class="contenido">{{ post.contenido }}</p>
+                    <div class="interacciones">
+                        <div class="likes">Me gusta</div>
+                        <div class="comentarios">Comentarios</div>
+                        <div class="compartir">Compartir</div>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
 </div>
-{% endblock %}

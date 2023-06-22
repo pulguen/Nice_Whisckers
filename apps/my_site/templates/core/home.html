@@ -1,77 +1,19 @@
 {% extends 'core/base.html' %}
-
 {% block content %}
 
-<h1>{{ page_heading }}</h1>
 <p>Contenido de la página de inicio...</p>
-
 <ul>
     {% for barberia in barberias %}
         <li class = "btn_barberia" ><a href="">{{ barberia.nombre }}</a></li>
     {% endfor %}
 </ul>
 
-<div>
-    <h4>POSTEO</h4>
-    <p>perfil</p>
-    <p>imagen</p>
-    <p>descripcion</p>
-    <p>me gusta</p>
-    <p>comentarios</p>
-    <p>compartir</p>
+<div class = 'btn_reservar'>
+<a href="">Reservar</a>
 </div>
-<div>
-    <h4>POSTEO</h4>
-    <p>perfil</p>
-    <p>imagen</p>
-    <p>descripcion</p>
-    <p>me gusta</p>
-    <p>comentarios</p>
-    <p>compartir</p>
-</div>
-<div>
-    <h4>POSTEO</h4>
-    <p>perfil</p>
-    <p>imagen</p>
-    <p>descripcion</p>
-    <p>me gusta</p>
-    <p>comentarios</p>
-    <p>compartir</p>
-</div>
-<div>
-    <h4>POSTEO</h4>
-    <p>perfil</p>
-    <p>imagen</p>
-    <p>descripcion</p>
-    <p>me gusta</p>
-    <p>comentarios</p>
-    <p>compartir</p>
-</div>
-<div>
-    <h4>POSTEO</h4>
-    <p>perfil</p>
-    <p>imagen</p>
-    <p>descripcion</p>
-    <p>me gusta</p>
-    <p>comentarios</p>
-    <p>compartir</p>
-</div>
-<div>
-    <h4>POSTEO</h4>
-    <p>perfil</p>
-    <p>imagen</p>
-    <p>descripcion</p>
-    <p>me gusta</p>
-    <p>comentarios</p>
-    <p>compartir</p>
-</div>
-<div>
-    <h4>POSTEO</h4>
-    <p>perfil</p>
-    <p>imagen</p>
-    <p>descripcion</p>
-    <p>me gusta</p>
-    <p>comentarios</p>
-    <p>compartir</p>
+
+{% include 'index_posts.html' with posts=posts %}
 </div>
 {% endblock %}
+
+

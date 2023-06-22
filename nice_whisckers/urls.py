@@ -26,9 +26,9 @@ urlpatterns = [
     path('accounts/',include('django.contrib.auth.urls')),
     path('barberia/',include('apps.barberia.urls')),
     #path('home/',include('apps.my_site.urls')),
-    # path('post/',include('apps.post.urls')),
+    path('post/',include('apps.post.urls')),
     # path('profesional/',include('apps.profesional.urls')),
-    # path('propietario/',include('apps.barberia.urls')),
-    # path('turno/',include('apps.barberia.urls')), 
+    path('propietario/',include('apps.propietario.urls')),
+    #path('turno/',include('apps.barberia.urls')), 
     path('usuario/',include('apps.usuario.urls')),
 ]

@@ -1,14 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-class Usuario (models.Model):
-    nickname = models.CharField(max_length=50)
-    contraseña = models.CharField(max_length=50)
-    propietario = models.BooleanField(default=False)
-    profesional = models.BooleanField(default=False)
-        
-    class Meta:
-        ordering = ('nickname',)
+class CustomUser(AbstractUser):
+    es_propietario = models.BooleanField(default=False)
+    es_profesional = models.BooleanField(default=False)
     
     def __str__(self):
-        return self.usuario
-    
+        return self.username

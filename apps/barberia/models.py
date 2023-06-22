@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 # Create your models here.
@@ -8,7 +9,7 @@ class Barberia(models.Model):
     horario = models.CharField(max_length=255, null=True, blank=True)
     #lat = models.FloatField()
     #lon = models.FloatField()
-
+    
     class Meta:
         ordering = ('nombre',)
     

@@ -1,17 +1,17 @@
 # Imports sin from del sistema o de django.
+from audioop import reverse
 import os
 # Imports de django o librerias de terceros
 from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
+from django.shortcuts import redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Imports de nuestras apps
 from apps.barberia.forms import BarberiaForm
 from apps.barberia.models import Barberia
-from django.contrib.auth.mixins import LoginRequiredMixin
+from apps.propietario.models import Propietario
 
-from django.shortcuts import redirect
-
-# backendifts/alumno
 class BarberiasView(LoginRequiredMixin, TemplateView):
     template_name = 'index_barberias.html'
 
@@ -20,14 +20,13 @@ class BarberiasView(LoginRequiredMixin, TemplateView):
         context['barberias'] = Barberia.objects.all()
         return context
 
-# backendifts/alumno/<int: id>
 class BarberiaView(LoginRequiredMixin, TemplateView):
     template_name = 'perfil_barberia.html'
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Vamos a buscar al alumno que esta relacionado con quien inicia sesion
-        barberia_id = kwargs['id']
+        barberia_id = kwargs['id']        
         barberia = Barberia.objects.get(id=barberia_id, user=self.request.user)
         if not Barberia:
             pass
@@ -46,8 +45,18 @@ class BarberiaView(LoginRequiredMixin, TemplateView):
 class BarberiaFormView(LoginRequiredMixin, CreateView):
     form_class = BarberiaForm
     template_name = 'create_barberia.html'
-    success_url = reverse_lazy('index_barberias')
-    
+    success_url = reverse_lazy('barberia:index_barberias')
+
     def form_valid(self, form):
-        form.save()
+        # Obtener el usuario autenticado
+        propietario = self.request.user
+        # Guardar la barbería y obtener la instancia
+        barberia = form.save()
+        # Crear un registro de Propietario asociado al usuario autenticado y a la barbería
+        Propietario.objects.create(propietario=propietario, barberia=barberia)
+        # Asignar el propietario a la instancia de la barbería
+        form.instance.propietario = propietario
+        # Marcar al propietario como propietario
+        propietario.es_propietario = True
+        propietario.save()
         return super().form_valid(form)

@@ -9,4 +9,3 @@ class BarberiaForm(forms.ModelForm):
             'direccion',
             'horario',
         ]
-        

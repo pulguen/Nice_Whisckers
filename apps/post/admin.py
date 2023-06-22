@@ -5,4 +5,4 @@ from apps.post.models import Post
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('barberia','contenido','fecha_publicacion',)
+    list_display = ('propietario','contenido','fecha_publicacion',)

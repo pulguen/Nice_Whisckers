@@ -46,6 +46,7 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECTS_APPS
@@ -58,6 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django_session_timeout.middleware.SessionTimeoutMiddleware',
 ]
 
 ROOT_URLCONF = 'nice_whisckers.urls'
@@ -139,3 +142,7 @@ LOGIN_URL= 'login'
 LOGIN_REDIRECT_URL = PAGINA_INICIO
 LOGOUT_REDIRECT_URL = LOGIN_URL
 
+AUTH_USER_MODEL = 'usuario.CustomUser'
+
+SESSION_EXPIRE_SECONDS = 3600  # 1 hora
+SESSION_TIMEOUT_REDIRECT = 'login'

@@ -1,15 +1,17 @@
-from django.shortcuts import render
-from django.contrib.auth.forms import UserCreationForm
+from audioop import reverse
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from apps.usuario.models import Usuario
 from django.views.generic.base import TemplateView
-from django.contrib.auth.models import User
-
+from apps.my_site.models import Persona
+from apps.propietario.models import Propietario
+from apps.usuario.forms import CustomUserCreationForm
+from apps.usuario.models import CustomUser
+from apps.barberia.models import Barberia
 # Create your views here.
 class SignupView(CreateView):
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm
     template_name = 'signup.html'
     success_url = reverse_lazy('login')
     
@@ -18,10 +20,20 @@ class UsuarioView(LoginRequiredMixin, TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        usuario = User.objects.get(username=self.request.user.username)
-        if not Usuario:
-            pass
-            # Redirect al inicio PAGINA_INICIO
-            # return Response(401, {"data": "Este usuario no es tuyo, no se puede acceder."})
-        context['Usuario'] = usuario
+        usuario = CustomUser.objects.get(username=self.request.user.username)
+        if usuario.es_propietario:
+            try:
+                propietario = Propietario.objects.get(propietario=self.request.user)
+                barberia = propietario.barberia
+                barberia_id = propietario.barberia.id
+                context['propietario'] = propietario
+                context['barberia'] = barberia
+                context['barberia_id'] = barberia_id               
+            except Propietario.DoesNotExist:
+                # El usuario no es propietario
+                pass
+        
         return context
+    
+
+    

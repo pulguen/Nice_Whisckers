@@ -3,14 +3,13 @@ from django.conf import settings
 
 # Create your models here.
 class Post(models.Model):
-    barberia = models.ForeignKey('barberia.Barberia', on_delete=models.CASCADE)
-    usuario = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    propietario = models.ForeignKey("propietario.Propietario", verbose_name=("Propietario"),default=None, on_delete=models.CASCADE)
     contenido = models.TextField()
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
-    # Otros campos relacionados con el post
+    imagen = models.ImageField(upload_to='images/post', default='images/post/default_image.jpg',null=True,blank=True)
     
     class Meta:
-        ordering = ('barberia',)
+        ordering = ('propietario',)
 
     def __str__(self):
         """

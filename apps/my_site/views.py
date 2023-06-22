@@ -1,25 +1,13 @@
 from django.shortcuts import render
-from django.views import View
-from django.contrib.auth.forms import UserCreationForm
-from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from apps.post.models import Post
 
 class HomeView(LoginRequiredMixin, CreateView):
     def get(self, request):
+        posts = Post.objects.all().order_by('-fecha_publicacion')
         context = {
-            #"page_heading": "Nice Whisckers",
-            "request": request  # Utiliza la misma clave "request" en el contexto
+            "user": request.user,
+            "posts": posts  # Agrega el contexto "posts"
         }
-        return render(request, 'core/home.html', {'user': request.user})
-    
-class SignupView(CreateView):
-    form_class = UserCreationForm
-    template_name = 'signup.html'
-    success_url = reverse_lazy('login')
-    
-    
-    
-    
-    
-    
+        return render(request, 'core/home.html', context)

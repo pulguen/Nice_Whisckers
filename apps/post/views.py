@@ -5,23 +5,28 @@ from django.views.generic.edit import CreateView
 from django.views.generic.base import TemplateView
 from apps.post.forms import PostForm
 from apps.post.models import Post
+from apps.propietario.models import Propietario
 
 class PostCreateView(LoginRequiredMixin, CreateView):
+    model=Post
     form_class = PostForm
     template_name = 'create_post.html'
-    success_url = reverse_lazy('index_post')
-    
+    success_url = reverse_lazy('home')
+            
     def form_valid(self, form):
-        form.save()
+        propietario = Propietario.objects.get(propietario=self.request.user)
+        form.instance.propietario = propietario        
         return super().form_valid(form)
 
 class PostsView(LoginRequiredMixin, TemplateView):
     template_name = 'index_posts.html'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['Posts'] = Post.objects.all()
+        context['posts'] = Post.objects.all()
         return context
     
+        
 class PostView(LoginRequiredMixin, TemplateView):
     template_name = 'post.html'    
     def get_context_data(self, **kwargs):
