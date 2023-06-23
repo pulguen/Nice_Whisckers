@@ -171,9 +171,10 @@ a{
 }
 
 .btn_publicar{
-    margin: 15px 0 15px 0 ;
+    margin: 15px 0 20px 0 ;
     display: flex;
     flex-direction: column;
+
 }
 
 .btn_publicar a{
@@ -194,6 +195,36 @@ a{
     color: var(--color_secondary);
 }
 
+.barbers-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 425;
+}
+
+.contenedor_barbero{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+ 
+
+}
+#imagen_barbero{
+    height: 150px;
+    width: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.feed-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
 /* FOOTER */
 
 .footer{
@@ -213,12 +244,59 @@ a{
     align-items: center;
 }
 
-/*Card posteo*/
-.card {
+.card_home{
     display: flex;
     flex-direction: column;
     width: 300px;
-    background-color: #f5f5f5;
+    background-color: var(--color_prymary);
+    color: var(--color_alternativo);
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+  }
+
+.reserva_{
+    position: relative;
+}
+
+.reserva_ h2 {
+    position: absolute;
+    top: 22px;
+    left: 30px;
+    color: var(--color_alternativo);
+    font-size: 25pt;
+  }
+  
+.btn_reservar_ {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+.btn_reservar_ a {
+    background-color: rgba(225, 98, 25,0.85) ;
+    color: var(--color_alternativo);
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 4px 10px var(--color_prymary) inset;
+}
+
+
+
+/*Card posteo*/
+.card{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background-color: var(--color_alternativo);
+    border: 1px solid var(--color_prymary);
+    color: var(--color_prymary);
     border-radius: 8px;
     padding: 16px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -237,7 +315,7 @@ a{
     margin-bottom: 10px;
   }
   
-  img {
+  img{
     width: 265px;
     border-radius: 4px;
     margin-bottom: 8px;

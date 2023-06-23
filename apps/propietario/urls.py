@@ -1,7 +1,6 @@
 from django.urls import path
 from apps.propietario.views import AdminBarberView
 
-
 app_name = 'propietario'
 
 urlpatterns = [

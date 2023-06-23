@@ -5,6 +5,6 @@ from apps.profesional.models import Profesional
 
 @admin.register(Profesional)
 class ProfesionalAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'dni')
-    search_fields = ('dni',)
-    list_filter = ('dni',)
+    list_display = ('nombre', 'barberia')
+    search_fields = ('nombre',)
+    list_filter = ('nombre',)

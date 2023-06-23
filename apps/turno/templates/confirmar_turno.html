@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% block content %}
+  <h3>Confirmar Turno</h3>
+  <p>Día: {{ form.dia.value }}</p>
+  <p>Hora: {{ form.hora.value }}</p>
+  <p>Barberia ID: {{ form.barberia_id.value }}</p>
+  <p>Profesional ID: {{ form.profesional_id.value }}</p>
+
+  <form method="POST" action="{% url 'turno:confirmacion_turno' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Confirmar Turno</button>
+  </form>
+{% endblock %}
+

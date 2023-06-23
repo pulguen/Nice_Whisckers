@@ -7,7 +7,7 @@ from nice_whisckers import settings
 class Propietario(models.Model):
     propietario = models.ForeignKey(
         settings.AUTH_USER_MODEL, 
-        verbose_name=("barberia"), 
+        verbose_name=("propietario"), 
         on_delete=models.CASCADE,
         default=None,
         related_name='barberia',

@@ -1,0 +1,9 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h1>Crear Barbero</h1>
+<form method="POST" action="{% url 'profesional:create_profesional' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+</form>
+{% endblock %}

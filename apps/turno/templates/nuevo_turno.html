@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h1>Nuevo Turno</h1>
+<p>Elegi el dia, tu barberia y tu barbero preferido</p>
+<form method="POST" action="{% url 'turno:nuevo_turno' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+</form>
+{% endblock %}

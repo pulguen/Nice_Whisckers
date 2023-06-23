@@ -1,15 +1,20 @@
 {% extends 'core/base.html' %}
+{% load static %}
 {% block content %}
-
-<p>Contenido de la página de inicio...</p>
-<ul>
-    {% for barberia in barberias %}
-        <li class = "btn_barberia" ><a href="">{{ barberia.nombre }}</a></li>
-    {% endfor %}
-</ul>
-
-<div class = 'btn_reservar'>
-<a href="">Reservar</a>
+<div class="card_home">
+    <h4 class="barberia">Nice Whisckers</h4>
+    <h5 class='fecha_publicacion'>Ahora</h5>        
+    <div class='reserva_'>
+        <img src="{% static 'images/fondohome2.png' %}" alt="Imagen de la publicación">
+        <h2> Haz<br>que se<br>luzca</h2>        
+        <div class = 'btn_reservar_'><a href="{% url 'turno:nuevo_turno' %}">Reservar</a></div>
+    </div>
+    <p class="contenido"><strong>¡Haz que se luzca!</strong><br>¡Busca tu peluqueria y profesional favorito en Nice Whisckers!</p>
+    <div class="interacciones">
+        <div class="likes">Me gusta</div>
+        <div class="comentarios">Comentarios</div>
+        <div class="compartir">Compartir</div>
+    </div>
 </div>
 
 {% include 'index_posts.html' with posts=posts %}

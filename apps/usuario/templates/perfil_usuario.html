@@ -18,7 +18,7 @@
 </div>
 
 {% if user.es_propietario %}
-<div class='btn_reservar'>
+<div class='btn_publicar'>
 <a href="{% url 'propietario:admin_barber' id=barberia.id %}">Administrar Barbería</a>
 </div>
 {% else %}
@@ -27,14 +27,20 @@
 </div>
 {% endif %}
 
-<div class="feed-section">
-  <h3>Publicaciones</h3>
-    {% for post in feed %}
+<div class="turno-section">
+  <h3>Tus turnos</h3>
+  <div class = 'btn_reservar'>
+    <a href="{% url 'turno:nuevo_turno' %}">Reservar</a>
+    </div>
+    {% for turno in turnos %}
       <div class="post">
-        <!-- Contenido de la publicación -->
-        <img src="{{ post.imagen.url }}" alt="Imagen de la publicación">
-        <p>{{ post.contenido }}</p>
-        <p>{{ post.fecha_publicacion }}</p>
+        <!-- Informacion sobre el turno -->
+        <h3>{{turno.barberia.nombre}}</h3>
+        <p>{{ post.dia }}</p>
+        <p>{{ post.hora }}</p>
+
+
+
 
         <!-- Comentarios -->
         <h4>Comentarios</h4>

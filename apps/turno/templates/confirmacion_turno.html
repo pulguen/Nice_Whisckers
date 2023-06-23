@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmación de Turno</title>
+</head>
+<body>
+    <h1>Confirmación de Turno</h1>
+
+    {% if turno %}
+        <h2>Detalles del Turno:</h2>
+        <p>ID del Turno: {{ turno.id }}</p>
+        <p>Fecha y Hora: {{ turno.fecha_hora }}</p>
+        <p>Profesional: {{ turno.profesional }}</p>
+        <!-- Agrega aquí más detalles del turno que desees mostrar -->
+    {% else %}
+        <p>No se ha encontrado el turno.</p>
+    {% endif %}
+</body>
+</html>

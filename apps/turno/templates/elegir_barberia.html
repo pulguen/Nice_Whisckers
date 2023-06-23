@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+<h1>Elige una barbería disponible</h1>
+<h3>Datos del Turno</h3>
+<p>Día: {{ dia }}</p>
+<p>Hora: {{ hora }}</p>
+
+<ul>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Elegir</button>
+  </form>
+</ul>
+{% endblock %}
+

@@ -1,9 +1,18 @@
 from django.urls import path
-from apps.turno.views import TurnosView, BarberiaView, BarberiaFormView
+from .views import (
+    NuevoTurnoView,
+    ElegirBarberiaView,
+    ElegirProfesionalView,
+    ConfirmarTurnoView,
+    ConfirmacionTurnoView
+)
+
+app_name = 'turno'
 
 urlpatterns = [
-    path("", TurnosView.as_view(), name="index_turno"),
-    path("<int:id>", BarberiaView.as_view(), name="perfil_barberia"),
-    path("crear", BarberiaFormView.as_view(), name="crear_barberia"),
+    path('nuevo/', NuevoTurnoView.as_view(template_name='nuevo_turno.html'), name='nuevo_turno'),
+    path('elegir-barberia/', ElegirBarberiaView.as_view(), name='elegir_barberia'),
+    path('elegir-profesional/', ElegirProfesionalView.as_view(), name='elegir_profesional'),
+    path('confirmar-turno/', ConfirmarTurnoView.as_view(), name='confirmar_turno'),
+    path('confirmacion-turno/', ConfirmacionTurnoView.as_view(), name='confirmacion_turno'),
 ]
-
