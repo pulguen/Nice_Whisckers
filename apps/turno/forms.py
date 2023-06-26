@@ -64,7 +64,35 @@ class ElegirProfesionalForm(forms.Form):
         self.fields['profesional'].label_from_instance = lambda obj: obj.nombre
 
 class ConfirmarTurnoForm(forms.Form):
-    dia = forms.DateField(widget=forms.HiddenInput())
-    hora = forms.TimeField(widget=forms.HiddenInput())
-    barberia_id = forms.IntegerField(widget=forms.HiddenInput())
-    profesional_id = forms.IntegerField(widget=forms.HiddenInput())
+    class Meta:
+        model:Turno
+        dia = forms.DateField(widget=forms.HiddenInput())
+        hora = forms.TimeField(widget=forms.HiddenInput())
+        barberia = forms.CharField(widget=forms.HiddenInput(), disabled=True)
+        profesional = forms.CharField(widget=forms.HiddenInput(), disabled=True)
+
+        def __init__(self, *args, barberia_choices=None, profesional_choices=None, **kwargs):
+            super().__init__(*args, **kwargs)
+            if barberia_choices:
+                self.fields['barberia'] = forms.ChoiceField(
+                    choices=barberia_choices,
+                    widget=forms.HiddenInput(),
+                    disabled=True
+                )
+            if profesional_choices:
+                self.fields['profesional'] = forms.ChoiceField(
+                    choices=profesional_choices,
+                    widget=forms.HiddenInput(),
+                    disabled=True
+                )    
+
+class ConfirmacionTurnoForm(forms.Form):
+    class Meta:
+        model = Turno
+        fields = ['barberia', 'profesional', 'dia', 'hora']
+        widgets = {
+            'barberia': forms.Select(attrs={'class': 'form-control'}),
+            'profesional': forms.Select(attrs={'class': 'form-control'}),
+            'dia': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
+            'hora': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
+        }

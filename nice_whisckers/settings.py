@@ -145,7 +145,7 @@ LOGOUT_REDIRECT_URL = LOGIN_URL
 
 AUTH_USER_MODEL = 'usuario.CustomUser'
 
-SESSION_EXPIRE_SECONDS = 3600  # 1 hora
+SESSION_EXPIRE_SECONDS = 900  # 15 min
 SESSION_TIMEOUT_REDIRECT = 'login'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'

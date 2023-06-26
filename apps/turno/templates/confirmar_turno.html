@@ -1,10 +1,12 @@
+<!-- confirmar_turno.html -->
 {% extends 'core/base.html' %}
+
 {% block content %}
   <h3>Confirmar Turno</h3>
-  <p>Día: {{ form.dia.value }}</p>
-  <p>Hora: {{ form.hora.value }}</p>
-  <p>Barberia ID: {{ form.barberia_id.value }}</p>
-  <p>Profesional ID: {{ form.profesional_id.value }}</p>
+  <p>Día: {{ dia }}</p>
+  <p>Hora: {{ hora }}</p>
+  <p>Barbería: {{ barberia }}</p>
+  <p>Profesional: {{ profesional }}</p>
 
   <form method="POST" action="{% url 'turno:confirmacion_turno' %}">
     {% csrf_token %}

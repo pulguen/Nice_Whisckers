@@ -6,12 +6,12 @@
 <p>Barberia: {{ barberia.nombre }}</p>
 
 <h1>Elige un profesional</h1>
+
 <ul>
-  <ul>
-    <form method="POST" action="{% url 'turno:confirmar_turno' %}">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Elegir barbero</button>
-    </form>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Elegir</button>
+  </form>
 </ul>
 {% endblock %}
