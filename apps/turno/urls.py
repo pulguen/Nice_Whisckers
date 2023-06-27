@@ -14,5 +14,5 @@ urlpatterns = [
     path('elegir-barberia/', ElegirBarberiaView.as_view(), name='elegir_barberia'),
     path('elegir-profesional/', ElegirProfesionalView.as_view(), name='elegir_profesional'),
     path('confirmar-turno/', ConfirmarTurnoView.as_view(), name='confirmar_turno'),
-    path('confirmacion-turno/', ConfirmacionTurnoView.as_view(), name='confirmacion_turno'),
+    path('<int:id>/', ConfirmacionTurnoView.as_view(), name='confirmacion_turno'),
 ]

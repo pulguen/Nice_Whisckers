@@ -1,6 +1,24 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block content %}
+
+<div class="turno-section">
+  {% if turno %}
+    <h4>Proximos turnos</h4>
+    {% for turno in turno %}
+      <div class="turnos">
+        <!-- Informacion sobre el turno -->
+        <div class="barber_img">logo barberia</div>
+        <div class="datos_turno">
+        <h3>{{turno.barberia.nombre}}</h3>
+        <p>{{ turno.dia }}</p>
+        <p>{{ turno.hora }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
+
 <div class="card_home">
     <h4 class="barberia">Nice Whisckers</h4>
     <h5 class='fecha_publicacion'>Ahora</h5>        

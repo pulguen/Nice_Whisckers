@@ -14,7 +14,6 @@ class Turno(models.Model):
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     dia = models.DateField(auto_now=False, auto_now_add=False)
     hora = models.TimeField(auto_now=False, auto_now_add=False)
-    comentario = models.CharField(max_length=100, null=True, blank=True)
     fecha_creacion = models.DateTimeField(auto_now=True)
     
         

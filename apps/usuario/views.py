@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.base import TemplateView
 from apps.my_site.models import Persona
 from apps.propietario.models import Propietario
+from apps.turno.models import Turno
 from apps.usuario.forms import CustomUserCreationForm
 from apps.usuario.models import CustomUser
 from apps.barberia.models import Barberia
@@ -26,9 +27,11 @@ class UsuarioView(LoginRequiredMixin, TemplateView):
                 propietario = Propietario.objects.get(propietario=self.request.user)
                 barberia = propietario.barberia
                 barberia_id = propietario.barberia.id
+                turnos= Turno.objects.filter(usuario=self.request.user)
                 context['propietario'] = propietario
                 context['barberia'] = barberia
-                context['barberia_id'] = barberia_id               
+                context['barberia_id'] = barberia_id
+                context['turno'] = list(turnos)
             except Propietario.DoesNotExist:
                 # El usuario no es propietario
                 pass

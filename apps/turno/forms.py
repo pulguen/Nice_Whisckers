@@ -86,13 +86,12 @@ class ConfirmarTurnoForm(forms.Form):
                     disabled=True
                 )    
 
-class ConfirmacionTurnoForm(forms.Form):
+class DatosTurnoForm(forms.Form):
     class Meta:
         model = Turno
-        fields = ['barberia', 'profesional', 'dia', 'hora']
-        widgets = {
-            'barberia': forms.Select(attrs={'class': 'form-control'}),
-            'profesional': forms.Select(attrs={'class': 'form-control'}),
-            'dia': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
-            'hora': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
-        }
+        fields = [
+            'barberia',
+            'profesional',
+            'dia',
+            'hora',
+            ]

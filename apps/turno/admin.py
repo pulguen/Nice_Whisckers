@@ -5,6 +5,6 @@ from apps.turno.models import Turno
 
 @admin.register(Turno)
 class TurnoAdmin(admin.ModelAdmin):
-    list_display = ('usuario','barberia','profesional')
+    list_display = ('usuario','barberia','profesional', 'dia', 'hora',)
     search_fields = ('usuario',)
     list_filter = ('usuario',)

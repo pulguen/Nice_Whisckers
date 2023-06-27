@@ -224,7 +224,6 @@ a{
 }
 
 
-
 /* FOOTER */
 
 .footer{
@@ -289,6 +288,7 @@ a{
 
 
 
+
 /*Card posteo*/
 .card{
     display: flex;
@@ -345,3 +345,41 @@ a{
   .compartir:hover {
     text-decoration: underline;
   }
+
+  .turno-section{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: var(--color_acento);
+    border-radius: 20px;
+  }
+
+  .barber_img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 100px;
+    border: 1px solid var(--color_prymary);
+    border-radius: 20px;
+    margin-right: 15px;
+
+  }
+
+  .turnos{
+    display: flex;
+    margin-top: 15px;
+  }
+
+  .datos_turno{
+    display: flex;
+    flex-direction: column;
+
+  }
+
+
+
+

@@ -8,7 +8,7 @@ from apps import turno
 from apps.barberia.models import Barberia
 from apps.profesional.models import Profesional
 from apps.turno.models import Turno
-from apps.turno.forms import ConfirmarTurnoForm, ElegirBarberiaForm, ElegirProfesionalForm, NuevoTurnoForm
+from apps.turno.forms import ConfirmarTurnoForm, DatosTurnoForm, ElegirBarberiaForm, ElegirProfesionalForm, NuevoTurnoForm
 
 class NuevoTurnoView(LoginRequiredMixin, FormView):
     template_name = 'nuevo_turno.html'
@@ -91,7 +91,7 @@ class ElegirProfesionalView(LoginRequiredMixin, ListView):
             }
             return render(request, 'elegir_profesional.html', context)
 
-class ConfirmarTurnoView(LoginRequiredMixin, DetailView):  
+class ConfirmarTurnoView(LoginRequiredMixin, View):  
     def get(self, request):
         profesional_id = self.request.session.get('profesional_id')
         if profesional_id:            
@@ -114,8 +114,6 @@ class ConfirmarTurnoView(LoginRequiredMixin, DetailView):
         barberia_choices = [(barberia.id, barberia.nombre)]
         profesional_choices = [(profesional.id, profesional.nombre)]
         form = ConfirmarTurnoForm(
-            barberia_choices=barberia_choices,
-            profesional_choices=profesional_choices,
             initial={
                 'dia': dia,
                 'hora': hora,
@@ -123,7 +121,7 @@ class ConfirmarTurnoView(LoginRequiredMixin, DetailView):
                 'profesional': profesional_id,
             },
         )
-        
+                
         context = {
             'form': form,
             'dia': dia,
@@ -131,15 +129,14 @@ class ConfirmarTurnoView(LoginRequiredMixin, DetailView):
             'barberia': barberia.nombre,
             'profesional': profesional.nombre,
         }
-
-        return render(request, 'confirmar_turno.html', context)
+        return render(request, 'confirmar_turno.html', context,)
 
     def post(self, request):
-        dia = request.session.get('dia')
-        hora = request.session.get('hora')
-        usuario = self.request.user        
-        barberia_id = request.session.get('barberia_id')
-        profesional_id = request.session.get('profesional_id')
+        dia = self.request.session.get('dia')
+        hora = self.request.session.get('hora')
+        usuario=self.request.user
+        barberia_id = self.request.session.get('barberia_id')
+        profesional_id = self.request.session.get('profesional_id')
         if dia and hora and barberia_id and profesional_id:
             turno = Turno(
                 barberia_id=barberia_id,
@@ -147,23 +144,34 @@ class ConfirmarTurnoView(LoginRequiredMixin, DetailView):
                 usuario=usuario,
                 dia=dia,
                 hora=hora,
-            )
-            turno.save()
+            )            
+            form=ConfirmarTurnoForm(request.POST)
+            if form.is_valid():
+                turno = Turno(
+                barberia_id=barberia_id,
+                profesional_id=profesional_id,
+                usuario=usuario,
+                dia=dia,
+                hora=hora,)                
+                turno.save()
             self.request.session['turno_id'] = turno.id
-            del self.request.session['dia']
-            del self.request.session['hora']
-            del self.request.session['barberia_id']
-            del self.request.session['profesional_id']
-            return redirect('turno:confirmacion_turno')
+            id= self.request.session['turno_id']
+            return redirect('turno:confirmacion_turno',id)
         else:
             return redirect('turno:confirmar_turno')
+    
 
 class ConfirmacionTurnoView(LoginRequiredMixin,TemplateView):
     template_name = 'confirmacion_turno.html'
-
+    form_class = DatosTurnoForm    
+        
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        turno_id = self.request.session.get('turno_id')
-        turno = get_object_or_404(Turno, id=turno_id)
+        usuario= self.request.user
+        turno = Turno.objects.filter(usuario=usuario).order_by('-id').first()
+        if not Turno:
+            pass
+            # Redirect al inicio PAGINA_INICIO
+            # return Response(401, {"data": "Este usuario no es tuyo, no se puede acceder."})
         context['turno'] = turno
         return context

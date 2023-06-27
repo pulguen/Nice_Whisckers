@@ -26,35 +26,27 @@
 <a href="{% url 'barberia:crear_barberia' %}">Agregar Barberia</a>
 </div>
 {% endif %}
+<div class = 'btn_reservar'>
+  <a href="{% url 'turno:nuevo_turno' %}">Reservar</a>
+</div>
+<h3>Tus turnos</h3>
 
 <div class="turno-section">
-  <h3>Tus turnos</h3>
-  <div class = 'btn_reservar'>
-    <a href="{% url 'turno:nuevo_turno' %}">Reservar</a>
-    </div>
-    {% for turno in turnos %}
-      <div class="post">
+  {% if turno %}
+    <h4>Proximos turnos</h4>
+    {% for turno in turno %}
+      <div class="turnos">
         <!-- Informacion sobre el turno -->
+        <div class="barber_img">logo barberia</div>
+        <div class="datos_turno">
         <h3>{{turno.barberia.nombre}}</h3>
-        <p>{{ post.dia }}</p>
-        <p>{{ post.hora }}</p>
-
-
-
-
-        <!-- Comentarios -->
-        <h4>Comentarios</h4>
-        {% for comment in post.comentarios %}
-          <p>{{ comment.usuario }}: {{ comment.texto }}</p>
-        {% endfor %}
-
-        <!-- Formulario para agregar comentario -->
-        <form method="POST" action="{% url 'agregar_comentario' post.id %}">
-          {% csrf_token %}
-          <input type="text" name="texto" placeholder="Agregar comentario">
-          <button type="submit">Comentar</button>
-        </form>
+        <p>{{ turno.dia }}</p>
+        <p>{{ turno.hora }}</p>
+        </div>
       </div>
     {% endfor %}
+  {% endif %}
+
 </div>
+
 {% endblock %}
